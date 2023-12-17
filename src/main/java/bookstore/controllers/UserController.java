@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class UserController {
 
     private ArrayList<User> users;
+    private String filename = "users.dat";
 
     public UserController() {
         users = new ArrayList<>();
@@ -25,12 +26,15 @@ public class UserController {
         this.users = users;
     }
 
+    public void setFilename(String filename) { this.filename = filename; }
+
+
     public void writeUser(User user) {
         try {
 
             readUsers();
 
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("users.dat"));
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename));
 
             for(int i = 0; i < getUsers().size(); i++)
                 output.writeObject((User)(getUsers().get(i)));
@@ -48,7 +52,7 @@ public class UserController {
 
     public void readUsers() {
         try {
-            File file = new File("users.dat");
+            File file = new File(filename);
             file.createNewFile();
 
             users.clear();
@@ -164,7 +168,7 @@ public class UserController {
     }
 
     public void listToFile() {
-        try(ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("users.dat"))){
+        try(ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename))){
 
             for(int i = 0; i < users.size(); i++) {
                 output.writeObject(users.get(i));
