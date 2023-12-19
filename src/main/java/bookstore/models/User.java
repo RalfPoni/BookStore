@@ -1,6 +1,8 @@
 package bookstore.models;
 
 import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class User implements Serializable{
 
@@ -9,6 +11,11 @@ public abstract class User implements Serializable{
     private float salary;
 
     public User(String firstName, String lastName, String password, String email, String phoneNumber, float salary) {
+
+        if(!(verifyName(firstName) && verifyName(lastName)) || !(verifyEmail(email)) || !(verifyPhoneNumber(phoneNumber))) {
+            throw new IllegalArgumentException();
+        }
+
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setPassword(password);
@@ -82,6 +89,30 @@ public abstract class User implements Serializable{
 
     public String getUserInfo() {
         return firstName + " " + lastName + " " + accessLevel;
+    }
+
+    public static boolean verifyName(String name) {
+        if(name.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$"))
+            return true;
+        return false;
+    }
+
+    public static boolean verifyEmail(String email) {
+        Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher emailMatcher = emailPattern.matcher(email);
+
+        if(emailMatcher.matches()) return true;
+
+        return false;
+    }
+
+    public static boolean verifyPhoneNumber(String phoneNumber) {
+        Pattern phonePattern = Pattern.compile("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$");
+        Matcher matcher = phonePattern.matcher(phoneNumber);
+
+        if(matcher.matches()) return true;
+
+        return false;
     }
 
     @Override

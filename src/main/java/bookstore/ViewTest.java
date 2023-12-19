@@ -37,7 +37,7 @@ public class ViewTest extends Application{
 
         loginView.getLoginButton().setOnAction(e-> {
 
-            boolean verify = users.verifyUser(loginView.getFirstNameTF().getText(), loginView.getLastNameTF().getText(), loginView.getPasswordTF().getText());
+            boolean verify = users.verifyUser(loginView.getEmailTF().getText(), loginView.getPasswordTF().getText());
 
             if(verify){
 

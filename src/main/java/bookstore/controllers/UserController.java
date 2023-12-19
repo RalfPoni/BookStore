@@ -4,6 +4,8 @@ import bookstore.models.User;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserController {
 
@@ -30,6 +32,7 @@ public class UserController {
 
 
     public void writeUser(User user) {
+
         try {
 
             readUsers();
@@ -154,10 +157,10 @@ public class UserController {
         return null;
     }
 
-    public boolean verifyUser(String firstName, String lastName, String password) {
+    public boolean verifyUser(String email, String password) {
 
         for(int i = 0; i < getUsers().size(); i++) {
-            if(firstName.equals(getUsers().get(i).getFirstName()) && lastName.equals(getUsers().get(i).getLastName()) && password.equals(getUsers().get(i).getPassword())) {
+            if(email.equals(getUsers().get(i).getEmail()) && password.equals(getUsers().get(i).getPassword())) {
                 setCurrentUser(getUsers().get(i));
                 return true;
             }

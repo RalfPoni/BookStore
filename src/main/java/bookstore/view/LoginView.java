@@ -18,12 +18,10 @@ public class LoginView extends View{
     private StackPane stackPane = new StackPane();
     private GridPane gridPane = new GridPane();
 
-    private TextField firstNameTF = new TextField();
-    private TextField lastNameTF = new TextField();
+    private TextField emailTF = new TextField();
     private PasswordField passwordTF = new PasswordField();
 
-    private Label firstNameLabel = new Label("First Name");
-    private Label lastNameLabel = new Label("Last Name");
+    private Label emailLabel = new Label("Email");
     private Label passwordLabel = new Label("Password");
 
     private Button loginButton = new Button("Log in");
@@ -32,12 +30,8 @@ public class LoginView extends View{
         setView();
     }
 
-    public TextField getFirstNameTF() {
-        return firstNameTF;
-    }
-
-    public TextField getLastNameTF() {
-        return lastNameTF;
+    public TextField getEmailTF() {
+        return emailTF;
     }
 
     public PasswordField getPasswordTF() {
@@ -49,11 +43,9 @@ public class LoginView extends View{
     }
 
     public void setView() {
-        gridPane.add(firstNameTF, 1, 0);
-        gridPane.add(lastNameTF, 1, 1);
-        gridPane.add(passwordTF, 1, 2);
-        gridPane.add(firstNameLabel, 0, 0);
-        gridPane.add(lastNameLabel, 0, 1);
+        gridPane.add(emailTF, 1, 0);
+        gridPane.add(passwordTF, 1, 1);
+        gridPane.add(emailLabel, 0, 0);
         gridPane.add(passwordLabel, 0, 2);
 
         stackPane.getChildren().add(loginButton);
