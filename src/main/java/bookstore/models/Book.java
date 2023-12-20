@@ -2,6 +2,8 @@ package bookstore.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Book implements Serializable{
 
@@ -13,6 +15,10 @@ public class Book implements Serializable{
     private double cost;
 
     public Book(String name, String author, String ISBN, String category, String supplier, double originalPrice, double sellingPrice, int stock, LocalDate datePurchased) {
+        if(!(verifyISBN(ISBN))){
+            throw new IllegalArgumentException();
+        }
+
         setName(name);
         setAuthor(author);
         setISBN(ISBN);
@@ -113,5 +119,13 @@ public class Book implements Serializable{
         this.cost = cost;
     }
 
+    public static boolean verifyISBN(String isbn){
+        //RegEx pattern taken from https://howtodoinjava.com/java/regex/java-regex-validate-international-standard-book-number-isbns/
+        Pattern isbnPattern = Pattern.compile("^(?:ISBN(?:-10)?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$)[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$" );
+        Matcher isbnMatcher = isbnPattern.matcher(isbn);
 
+        if(isbnMatcher.matches()) return true;
+
+        return false;
+    }
 }

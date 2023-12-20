@@ -165,7 +165,7 @@ public class UserControllerTest {
         userController.addUser(testUser1);
         userController.addUser(testUser2);
 
-        assertTrue(userController.verifyUser("janeDoe@gmail.com", "password1"));
+        assertTrue(userController.verifyUser("johndoe@yahoo.com", "password1"));
         assertFalse(userController.verifyUser("asmith@gmail.com", "password2"));
         assertFalse(userController.verifyUser("", "wrongpassword"));
     }

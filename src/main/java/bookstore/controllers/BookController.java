@@ -26,9 +26,9 @@ public class BookController {
     }
 
     public String generateISBN() {
-        char[] randomISBN = new char[13];
+        char[] randomISBN = new char[10];
 
-        for(int i = 0; i < 13; i++) {
+        for(int i = 0; i < 10; i++) {
             int randomValue = (int)Math.floor(Math.random() * (57 - 48 + 1) + 48);
 
             randomISBN[i] = (char)randomValue;

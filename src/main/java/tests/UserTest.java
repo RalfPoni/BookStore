@@ -90,7 +90,7 @@ public class UserTest {
             "Swen, Nater, swensworld, swennater@gmail.com, 069 123 4567, 200.43",
             "Danny, Granger, Dagger, dg@workplace.thing.org, +(355) 421 9999, 1939939",
             "george mikan, Miken, lesstalk, gmm@gmail.com, 069 123 2345, 12",
-            "Patty, Mills, wash wash, patty@gmail.com, 123456789, 55"
+            "Patty, Mills, wash wash, patty@gmail.com, 123456789100, 55"
     })
     public void test_userConstructor_allGood(String firstName, String lastName, String password, String email, String phoneNumber, float salary){
         Assertions.assertDoesNotThrow(() -> {
