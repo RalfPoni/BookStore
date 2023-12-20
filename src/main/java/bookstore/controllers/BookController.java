@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class BookController {
 
     private ArrayList<Book> books;
+    private String filename = "books.dat";
 
     public BookController() {
         books = new ArrayList<>();
@@ -24,6 +25,8 @@ public class BookController {
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
     }
+
+    public void setFilename(String filename) {this.filename = filename;}
 
     public String generateISBN() {
         char[] randomISBN = new char[10];
@@ -46,7 +49,7 @@ public class BookController {
 
             readBooks();
 
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("books.dat"));
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename));
 
             for(int i = 0; i < getBooks().size(); i++)
                 output.writeObject((Book)(getBooks().get(i)));
@@ -66,7 +69,7 @@ public class BookController {
         try {
             books.clear();
 
-            File file = new File("books.dat");
+            File file = new File(filename);
             file.createNewFile();
 
             ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
@@ -81,10 +84,13 @@ public class BookController {
 
     public Book getBook(String ISBN) {
 
+
         readBooks();
 
         for(int i = 0; i < books.size(); i++) {
+            System.out.print("ISBN: " + books.get(i).getISBN() + "ISBN OTHER: " + ISBN);
             if(ISBN.equals(books.get(i).getISBN())) {
+                System.out.print("in loop");
                 return books.get(i);
             }
         }

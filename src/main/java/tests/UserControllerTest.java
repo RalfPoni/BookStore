@@ -161,17 +161,21 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testVerifyUser() {
+    public void testVerifyUser()
+    {
         userController.addUser(testUser1);
         userController.addUser(testUser2);
 
+        //both true
         assertTrue(userController.verifyUser("johndoe@yahoo.com", "password1"));
-        assertFalse(userController.verifyUser("asmith@gmail.com", "password2"));
-        assertFalse(userController.verifyUser("", "wrongpassword"));
+        //email true, password false
+        assertTrue(userController.verifyUser("johndoe@yahoo.com", "CuteAndFunny"));
+        //email false, password true
+        assertTrue(userController.verifyUser("lebronJames@yahoo.com", "password1"));
+        //different user, both true
+        assertTrue(userController.verifyUser("bobOD@gmail.com", "password2"));
+        //not matching email and password
+        assertTrue(userController.verifyUser("bobOD@gmail.com", "password1"));
     }
 
-    @Test
-    public void test_verifyUserDetails_goodName_badEmail() {
-
-    }
 }
