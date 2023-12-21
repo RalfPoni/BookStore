@@ -1,4 +1,4 @@
-package tests;
+package bookstore.view;
 
 import bookstore.models.Librarian;
 import org.junit.jupiter.api.Assertions;

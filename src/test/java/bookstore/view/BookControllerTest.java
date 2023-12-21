@@ -1,4 +1,4 @@
-package tests;
+package bookstore.view;
 
 import bookstore.models.Book;
 import bookstore.controllers.BookController;
@@ -21,7 +21,7 @@ public class BookControllerTest {
     private Book testBook2;
     private String isbn2;
 
-    private final String filename = "testBooks.dat";
+    private String filename = "testBooks.dat";
     private static File file;
 
     @BeforeEach
@@ -36,7 +36,6 @@ public class BookControllerTest {
         bookController.setFilename(filename);
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     @AfterEach
     public void tearDown()
     {

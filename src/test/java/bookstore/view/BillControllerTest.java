@@ -1,4 +1,4 @@
-package tests;
+package bookstore.view;
 import static org.junit.jupiter.api.Assertions.*;
 
 import bookstore.controllers.BillController;
@@ -16,8 +16,8 @@ public class BillControllerTest {
 
     private BillController billController;
     private Bill testBill;
-    private final String filename = "testBills.dat";
-    private final String counterFilename = "testBillNumbers.dat";
+    private String filename = "testBills.dat";
+    private String counterFilename = "testBillNumbers.dat";
     private Librarian user = new Librarian("John", "Doe", "password1", "johndoe@yahoo.com", "+12514968166",230920);
     private static File file1;
     private static File file2;
@@ -27,7 +27,7 @@ public class BillControllerTest {
     {
         billController = new BillController();
         billController.setFileNames(filename, counterFilename);
-        testBill = new Bill("12345678", 2, 14.99, user, LocalDate.now());
+        testBill = new Bill("1234567890", 2, 14.99, user, LocalDate.now());
     }
 
     @AfterEach
@@ -53,13 +53,15 @@ public class BillControllerTest {
             {
 
             }
+        } else {
+            System.out.println("\n hey \n \n hey");
         }
     }
 
     @Test
     public void testCreateBill()
     {
-        BillController.setCounter(21);
+        billController.setCounter(21);
 
         billController.createBill(testBill);
 

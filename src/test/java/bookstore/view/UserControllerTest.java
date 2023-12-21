@@ -1,4 +1,4 @@
-package tests;
+package bookstore.view;
 
 import java.io.*;
 import java.util.ArrayList;

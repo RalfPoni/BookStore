@@ -22,7 +22,7 @@ public class Bill implements Serializable{
 
         setISBN(ISBN);
         setQuantity(quantity);
-        setTotalPrice((double)quantity * itemPrice);
+        setTotalPrice(quantity, itemPrice);
 
         setDate(date);
         this.user = user;
@@ -43,7 +43,7 @@ public class Bill implements Serializable{
     }
 
     public void setISBN(String iSBN) {
-        if(!(Book.verifyISBN(ISBN))){
+        if(!(Book.verifyISBN(iSBN))){
             throw new IllegalArgumentException();
         }
         ISBN = iSBN;
@@ -53,8 +53,8 @@ public class Bill implements Serializable{
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setTotalPrice(int quantity, double itemPrice) {
+        this.totalPrice = (double)quantity*itemPrice;
     }
 
 

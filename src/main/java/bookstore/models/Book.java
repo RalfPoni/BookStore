@@ -70,7 +70,7 @@ public class Book implements Serializable{
 
     public void setISBN(String iSBN) {
 
-        if(!(verifyISBN(ISBN))){
+        if(!(verifyISBN(iSBN))){
             throw new IllegalArgumentException();
         }
 
