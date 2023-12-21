@@ -1,12 +1,9 @@
 package bookstore.view;
 
-import java.time.LocalDate;
-
 import bookstore.controllers.BillController;
 import bookstore.controllers.BookController;
 import bookstore.controllers.UserController;
 import bookstore.models.Bill;
-import bookstore.models.User;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +12,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
 
 public class AddToCartView extends View{
 

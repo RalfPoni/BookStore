@@ -41,7 +41,6 @@ public class GetEmployeeView extends View{
 
     public void setView(Stage stage) {
 
-        double stats = 0;
         Text statText = new Text("");
 
         bills.readBill();

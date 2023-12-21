@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -53,7 +52,7 @@ public class EditEmployeeView extends View{
                 System.out.println("Invalid");
             else {
                 users.readUsers();
-                Scene scene = new Scene(setEditView(view, stage, users.getUserIndex(firstNameTF.getText(), lastNameTF.getText())));
+                Scene scene = new Scene(setEditView(view, users.getUserIndex(firstNameTF.getText(), lastNameTF.getText())));
                 stage.setScene(scene);
                 stage.show();
             }
@@ -61,7 +60,7 @@ public class EditEmployeeView extends View{
 
     }
 
-    public BorderPane setEditView(ManageEmployeesView view, Stage stage, int listIndex) {
+    public BorderPane setEditView(ManageEmployeesView view, int listIndex) {
         BorderPane fullEditPane = new BorderPane();
 
         GridPane gridEditPane = new GridPane();

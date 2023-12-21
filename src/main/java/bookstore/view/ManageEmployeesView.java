@@ -10,18 +10,19 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+@SuppressWarnings("unused")
 public class ManageEmployeesView extends View{
 
-    private UserController users = new UserController();
+    private final UserController users = new UserController();
 
-    private BorderPane fullPane = new BorderPane();
-    private VBox userPane = new VBox();
-    private HBox buttonsPane = new HBox();
+    private final BorderPane fullPane = new BorderPane();
+    private final VBox userPane = new VBox();
+    private final HBox buttonsPane = new HBox();
 
-    private Button addEmployeeButton = new Button("Add Employee");
-    private Button editEmployeeButton = new Button("Edit Employee");
-    private Button removeEmployeeButton = new Button("Remove employee");
-    private Button getEmployeeButton = new Button("Get Employee Info");
+    private final Button addEmployeeButton = new Button("Add Employee");
+    private final Button editEmployeeButton = new Button("Edit Employee");
+    private final Button removeEmployeeButton = new Button("Remove employee");
+    private final Button getEmployeeButton = new Button("Get Employee Info");
 
     public ManageEmployeesView() {
         setView();

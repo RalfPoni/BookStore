@@ -4,7 +4,6 @@ import bookstore.controllers.UserController;
 import bookstore.models.Administrator;
 import bookstore.models.Librarian;
 import bookstore.models.Manager;
-import bookstore.models.User;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,33 +14,34 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+@SuppressWarnings("unused")
 public class AddEmployeeView extends View{
 
-    private BorderPane fullPane = new BorderPane();
+    private final BorderPane fullPane = new BorderPane();
 
-    private GridPane gridPane = new GridPane();
-    private StackPane stackPane = new StackPane();
+    private final GridPane gridPane = new GridPane();
+    private final StackPane stackPane = new StackPane();
 
-    private UserController users = new UserController();
+    private final UserController users = new UserController();
 
     //public User(String firstName, String lastName, String password, String email, String phoneNumber, float salary) {
 
 
-    private TextField nameTF = new TextField();
-    private TextField lastNameTF = new TextField();
-    private PasswordField passwordTF = new PasswordField();
-    private TextField emailTF = new TextField();
-    private TextField phoneNumberTF = new TextField();
-    private TextField salaryTF = new TextField();
-    private TextField accessLevelTF = new TextField();
+    private final TextField nameTF = new TextField();
+    private final TextField lastNameTF = new TextField();
+    private final PasswordField passwordTF = new PasswordField();
+    private final TextField emailTF = new TextField();
+    private final TextField phoneNumberTF = new TextField();
+    private final TextField salaryTF = new TextField();
+    private final TextField accessLevelTF = new TextField();
 
-    private Label nameLabel = new Label("Name:");
-    private Label lastNameLabel = new Label("Last Name:");
-    private Label passwordLabel = new Label("Password:");
-    private Label emailLabel = new Label("Email:");
-    private Label phoneNumberLabel = new Label("Phone Number:");
-    private Label salaryLabel = new Label("Salary:");
-    private Label accessLevelLabel = new Label("Access Label:");
+    private final Label nameLabel = new Label("Name:");
+    private final Label lastNameLabel = new Label("Last Name:");
+    private final Label passwordLabel = new Label("Password:");
+    private final Label emailLabel = new Label("Email:");
+    private final Label phoneNumberLabel = new Label("Phone Number:");
+    private final Label salaryLabel = new Label("Salary:");
+    private final Label accessLevelLabel = new Label("Access Label:");
 
     Button addEmployeeButton = new Button("Add Employee");
 

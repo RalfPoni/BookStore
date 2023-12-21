@@ -12,17 +12,17 @@ import javafx.stage.Stage;
 
 public class RemoveEmployeeView extends View{
 
-    private UserController users = new UserController();
+    private final UserController users = new UserController();
 
-    private BorderPane fullPane = new BorderPane();
-    private GridPane gridPane = new GridPane();
-    private StackPane stackPane = new StackPane();
+    private final BorderPane fullPane = new BorderPane();
+    private final GridPane gridPane = new GridPane();
+    private final StackPane stackPane = new StackPane();
 
-    private TextField firstNameTF = new TextField();
-    private TextField lastNameTF = new TextField();
+    private final TextField firstNameTF = new TextField();
+    private final TextField lastNameTF = new TextField();
 
-    private Label firstNameLabel = new Label("First Name:");
-    private Label lastNameLabel = new Label("Last Name:");
+    private final Label firstNameLabel = new Label("First Name:");
+    private final Label lastNameLabel = new Label("Last Name:");
 
     Button removeButton = new Button("Remove Employee");
 

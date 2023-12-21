@@ -1,17 +1,10 @@
 package bookstore.view;
 
-import java.text.ParseException;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
-
 import bookstore.InvalidBookException;
 import bookstore.controllers.BookController;
 import bookstore.controllers.UserController;
 import bookstore.models.Book;
 import bookstore.models.User;
-import bookstore.view.ManageEmployeesView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -25,8 +18,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 //selling price, original price, stock
 
+@SuppressWarnings({"Convert2Diamond", "unused"})
 public class BookView extends BorderPane{
 
     AddBookView addBook = new AddBookView();
@@ -49,7 +46,7 @@ public class BookView extends BorderPane{
     private Button addToCartButton = new Button("Add to cart");
     private Button restockButton = new Button("Restock");
     private Button addBookButton = new Button("Add book");
-    private Button manageEmployeesButton = new Button("Manage employees");
+    private final Button manageEmployeesButton = new Button("Manage employees");
 
     public BookView() {
 

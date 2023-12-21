@@ -19,17 +19,16 @@ public class BookControllerTest {
     private BookController bookController;
     private Book testBook;
     private Book testBook2;
-    private String isbn1;
     private String isbn2;
 
-    private String filename = "testBooks.dat";
+    private final String filename = "testBooks.dat";
     private static File file;
 
     @BeforeEach
     public void setUp() {
         file = new File(filename);
         bookController = new BookController();
-        isbn1 = bookController.generateISBN();
+        String isbn1 = bookController.generateISBN();
         isbn2 = bookController.generateISBN();
         testBook = new Book("1984", "George Orwell", isbn1, "Comedy", "AlphaSupplier", 9.00, 19.99, 4, LocalDate.now());
         testBook2 = new Book("Animal Farm", "George Orwell", isbn2, "Thriller", "BetaSupplier", 4.00, 14.99, 2, LocalDate.now());
@@ -37,6 +36,7 @@ public class BookControllerTest {
         bookController.setFilename(filename);
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @AfterEach
     public void tearDown()
     {
@@ -50,7 +50,7 @@ public class BookControllerTest {
 
                 file.delete();
             }
-            catch(IOException e)
+            catch(IOException ignored)
             {
 
             }

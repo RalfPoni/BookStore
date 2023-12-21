@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("unused")
 public abstract class User implements Serializable{
 
     @Serial

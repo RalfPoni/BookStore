@@ -1,6 +1,5 @@
 package bookstore.models;
 
-import java.io.File;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
