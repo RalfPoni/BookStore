@@ -102,11 +102,11 @@ public class BillControllerTest {
 
         try
         {
-            FileWriter fileWriter = new FileWriter("BillNo" + billController.getBillNo() + ".txt");
+            FileWriter fileWriter = new FileWriter("BillNo0.txt");
             fileWriter.write("");
             fileWriter.close();
 
-            new File("BillNo" + billController.getBillNo() + ".txt").delete();
+            new File("BillNo0.txt").delete();
         }
         catch(IOException e)
         {

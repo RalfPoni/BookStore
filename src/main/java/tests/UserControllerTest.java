@@ -169,20 +169,18 @@ public class UserControllerTest {
         //both true
         assertTrue(userController.verifyUser("johndoe@yahoo.com", "password1"));
         //email true, password false
-        assertTrue(userController.verifyUser("johndoe@yahoo.com", "CuteAndFunny"));
+        assertFalse(userController.verifyUser("johndoe@yahoo.com", "CuteAndFunny"));
         //email false, password true
-        assertTrue(userController.verifyUser("lebronJames@yahoo.com", "password1"));
+        assertFalse(userController.verifyUser("lebronJames@yahoo.com", "password1"));
         //different user, both true
         assertTrue(userController.verifyUser("bobOD@gmail.com", "password2"));
         //not matching email and password
-        assertTrue(userController.verifyUser("bobOD@gmail.com", "password1"));
+        assertFalse(userController.verifyUser("bobOD@gmail.com", "password1"));
     }
 
     @Test
     public void testSetAndGetCurrentUser()
     {
-        assertFalse(new File("currentuser.dat").isFile());
-
         userController.setCurrentUser(testUser1);
         User user = userController.getCurrentUser();
 
@@ -193,6 +191,19 @@ public class UserControllerTest {
                 () -> assertEquals(testUser1.getPhoneNumber(), user.getPhoneNumber()),
                 () -> assertEquals(testUser1.getSalary(), user.getSalary())
         );
+
+        try
+        {
+            FileWriter fileWriter = new FileWriter("currentuser.dat");
+            fileWriter.write("");
+            fileWriter.close();
+
+            new File("currentuser.dat").delete();
+        }
+        catch(IOException e)
+        {
+
+        }
     }
 
 
