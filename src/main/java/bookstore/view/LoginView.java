@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
+@SuppressWarnings("FieldMayBeFinal")
 public class LoginView extends View{
 
 

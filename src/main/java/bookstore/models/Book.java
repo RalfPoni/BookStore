@@ -1,5 +1,6 @@
 package bookstore.models;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
@@ -7,6 +8,7 @@ import java.util.regex.Pattern;
 
 public class Book implements Serializable{
 
+    @Serial
     private static final long serialVersionUID = -3810406382722211499L;
     private String name, author, ISBN, category, supplier;
     private double originalPrice, sellingPrice;
@@ -124,8 +126,6 @@ public class Book implements Serializable{
         Pattern isbnPattern = Pattern.compile("^(?:ISBN(?:-10)?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$)[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$" );
         Matcher isbnMatcher = isbnPattern.matcher(isbn);
 
-        if(isbnMatcher.matches()) return true;
-
-        return false;
+        return isbnMatcher.matches();
     }
 }

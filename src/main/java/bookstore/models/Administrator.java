@@ -1,8 +1,11 @@
 package bookstore.models;
 
+import java.io.Serial;
+
 public class Administrator extends User{
 
 
+    @Serial
     private static final long serialVersionUID = 2260639389319881851L;
 
 

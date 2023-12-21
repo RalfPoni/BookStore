@@ -4,9 +4,6 @@ import bookstore.models.User;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class UserController {
 
     private ArrayList<User> users;
@@ -40,23 +37,23 @@ public class UserController {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename));
 
             for(int i = 0; i < getUsers().size(); i++)
-                output.writeObject((User)(getUsers().get(i)));
+                output.writeObject(getUsers().get(i));
 
-            output.writeObject((User)user);
+            output.writeObject(user);
 
             addUser(user);
 
             output.close();
 
         } catch(IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
     public void readUsers() {
         try {
             File file = new File(filename);
-            file.createNewFile();
+            if(!file.createNewFile()) System.out.println("File already exists");
 
             users.clear();
 
@@ -66,7 +63,7 @@ public class UserController {
                 addUser((User)input.readObject());
 
         } catch(IOException | ClassNotFoundException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -74,11 +71,7 @@ public class UserController {
         try(ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("currentuser.dat"))){
 
             output.writeObject(user);
-            output.close();
 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -90,13 +83,7 @@ public class UserController {
 
             return (User)input.readObject();
 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -148,9 +135,9 @@ public class UserController {
     public User getUser(String name, String lastName) {
         readUsers();
 
-        for(int i = 0; i < users.size(); i++) {
-            if(name.equals(users.get(i).getFirstName()) && lastName.equals(users.get(i).getLastName())) {
-                return users.get(i);
+        for (User user : users) {
+            if (name.equals(user.getFirstName()) && lastName.equals(user.getLastName())) {
+                return user;
             }
         }
 
@@ -173,13 +160,10 @@ public class UserController {
     public void listToFile() {
         try(ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename))){
 
-            for(int i = 0; i < users.size(); i++) {
-                output.writeObject(users.get(i));
+            for (User user : users) {
+                output.writeObject(user);
             }
 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

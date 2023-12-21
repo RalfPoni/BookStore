@@ -1,21 +1,23 @@
 package bookstore.models;
 
 import java.io.File;
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Bill implements Serializable{
 
 
+    @Serial
     private static final long serialVersionUID = -6259039226126655541L;
     private String ISBN;
     private int quantity;
     private double totalPrice;
-    private static int counter = 0;
+   //private static final int counter = 0;
     private LocalDate date;
     User user;
 
-    File billNumber = new File("billNumber.txt");
+    //File billNumber = new File("billNumber.txt");
 
     public Bill(String ISBN, int quantity, double itemPrice, User user, LocalDate date) {
         setISBN(ISBN);

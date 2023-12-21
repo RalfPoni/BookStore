@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import bookstore.models.User;
+@SuppressWarnings("CodeBlock2Expr")
 public class UserTest {
 
     @ParameterizedTest

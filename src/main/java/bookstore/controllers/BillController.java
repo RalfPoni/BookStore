@@ -6,10 +6,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+@SuppressWarnings({"CallToPrintStackTrace", "InfiniteLoopStatement"})
 public class BillController {
 
-    private UserController users = new UserController();
-    private ArrayList<Bill> bills;
+    private final UserController users = new UserController();
+    private final ArrayList<Bill> bills;
     private Scanner scan;
     private static int counter;
     private String filename = "bills.dat";
@@ -31,8 +32,8 @@ public class BillController {
 
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename));
 
-            for(int i = 0; i < bills.size(); i++) {
-                output.writeObject(bills.get(i));
+            for (Bill value : bills) {
+                output.writeObject(value);
             }
 
 
@@ -44,9 +45,6 @@ public class BillController {
 
             createBill(bill);
 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -61,13 +59,7 @@ public class BillController {
             while (true)
                 bills.add((Bill)input.readObject());
 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -85,8 +77,8 @@ public class BillController {
 
     public void writeBillNo(int counter) {
 
-        try {
-            FileOutputStream output = new FileOutputStream(counterFilename);
+        try(FileOutputStream output = new FileOutputStream(counterFilename)) {
+
             try {
                 output.write(counter);
             } catch (IOException e) {
@@ -97,18 +89,15 @@ public class BillController {
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
     }
 
     public int getBillNo() {
-        try {
-            FileInputStream input = new FileInputStream(counterFilename);
-
-            return input.read();
-        } catch(IOException e) {
-            System.out.println(e);
-        }
+        try(FileInputStream input = new FileInputStream(counterFilename)) { return input.read();}
+        catch(IOException e) { e.printStackTrace(); }
 
         return 0;
     }
@@ -116,7 +105,8 @@ public class BillController {
     public void createBill(Bill bill) {
         File newFile = new File("BillNo" + counter + ".txt");
         try {
-            newFile.createNewFile();
+            if(!newFile.createNewFile()) System.out.println("Bill already exists!");
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

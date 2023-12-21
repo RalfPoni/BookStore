@@ -14,8 +14,7 @@ public class BookTest {
             "1-84356-028-3",
             "85-359-0277-5",
             "0512520689",
-            "0-9752298-0-X",
-            "XXXXXXXXXX"
+            "0-9752298-0-X"
     })
     public void test_verifyISBN_rightISBN(String isbn){
         Assertions.assertTrue(Book.verifyISBN(isbn));

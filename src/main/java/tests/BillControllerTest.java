@@ -59,7 +59,7 @@ public class BillControllerTest {
     @Test
     public void testCreateBill()
     {
-        billController.setCounter(21);
+        BillController.setCounter(21);
 
         billController.createBill(testBill);
 

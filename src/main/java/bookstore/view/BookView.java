@@ -62,6 +62,7 @@ public class BookView extends BorderPane{
 			stage.show();
 		}); */
     }
+    @SuppressWarnings("unchecked")
     public void setView() {
 
 
@@ -95,7 +96,7 @@ public class BookView extends BorderPane{
         originalPriceColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("originalPrice"));
 
         stockColumn.setMinWidth(150);
-        stockColumn.setCellValueFactory(new PropertyValueFactory<Book, Integer>("stock"));
+        stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
 
         datePurchasedColumn.setMinWidth(200);
         datePurchasedColumn.setCellValueFactory(new PropertyValueFactory<Book, LocalDate>("datePurchased"));
@@ -138,11 +139,7 @@ public class BookView extends BorderPane{
                     tableView.getItems().add(thisView.addBook());
                     otherStage.close();
 
-                } catch(NumberFormatException c) {
-                    System.out.println("Invalid");
-                } catch(DateTimeParseException c) {
-                    System.out.println("Invalid");
-                } catch(InvalidBookException c) {
+                } catch(NumberFormatException | InvalidBookException | DateTimeParseException c) {
                     System.out.println("Invalid");
                 }
 
@@ -180,9 +177,7 @@ public class BookView extends BorderPane{
 
 
     public void goToAddBookScene(Stage stage, Scene scene) {
-        addBookButton.setOnAction(e->{
-            stage.setScene(scene);
-        });
+        addBookButton.setOnAction(e-> stage.setScene(scene));
     }
 
     public Button getAddToCartButton() {

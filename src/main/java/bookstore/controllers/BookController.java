@@ -52,25 +52,28 @@ public class BookController {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename));
 
             for(int i = 0; i < getBooks().size(); i++)
-                output.writeObject((Book)(getBooks().get(i)));
+                output.writeObject(getBooks().get(i));
 
-            output.writeObject((Book)book);
+            output.writeObject(book);
 
             addBook(book);
 
             output.close();
 
         } catch(IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
+    @SuppressWarnings("InfiniteLoopStatement")
     public void readBooks() {
         try {
             books.clear();
 
             File file = new File(filename);
-            file.createNewFile();
+            if(!file.createNewFile()){
+                System.out.println("File already exists");
+            }
 
             ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
 
@@ -78,7 +81,7 @@ public class BookController {
                 addBook((Book)input.readObject());
 
         } catch(IOException | ClassNotFoundException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -87,11 +90,11 @@ public class BookController {
 
         readBooks();
 
-        for(int i = 0; i < books.size(); i++) {
-            System.out.print("ISBN: " + books.get(i).getISBN() + "ISBN OTHER: " + ISBN);
-            if(ISBN.equals(books.get(i).getISBN())) {
+        for (Book book : books) {
+            System.out.print("ISBN: " + book.getISBN() + "ISBN OTHER: " + ISBN);
+            if (ISBN.equals(book.getISBN())) {
                 System.out.print("in loop");
-                return books.get(i);
+                return book;
             }
         }
 
