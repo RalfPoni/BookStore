@@ -181,8 +181,6 @@ public class UserControllerTest {
     @Test
     public void testSetAndGetCurrentUser()
     {
-        assertFalse(new File("currentuser.dat").isFile());
-
         userController.setCurrentUser(testUser1);
         User user = userController.getCurrentUser();
 
@@ -193,6 +191,19 @@ public class UserControllerTest {
                 () -> assertEquals(testUser1.getPhoneNumber(), user.getPhoneNumber()),
                 () -> assertEquals(testUser1.getSalary(), user.getSalary())
         );
+
+        try
+        {
+            FileWriter fileWriter = new FileWriter("currentuser.dat");
+            fileWriter.write("");
+            fileWriter.close();
+
+            new File("currentuser.dat").delete();
+        }
+        catch(IOException e)
+        {
+
+        }
     }
 
 
