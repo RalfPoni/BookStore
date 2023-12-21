@@ -45,9 +45,9 @@ public class BillController {
 
             createBill(bill);
 
-        } catch (IOException e) {
+        } catch (IOException ignore) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+
         }
     }
 
@@ -59,9 +59,9 @@ public class BillController {
             while (true)
                 bills.add((Bill)input.readObject());
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException ignore) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+
         }
 
 
@@ -97,7 +97,7 @@ public class BillController {
 
     public int getBillNo() {
         try(FileInputStream input = new FileInputStream(counterFilename)) { return input.read();}
-        catch(IOException e) { e.printStackTrace(); }
+        catch(IOException ignore) {  }
 
         return 0;
     }

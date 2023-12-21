@@ -53,8 +53,6 @@ public class BillControllerTest {
             {
 
             }
-        } else {
-            System.out.println("\n hey \n \n hey");
         }
     }
 
@@ -110,7 +108,7 @@ public class BillControllerTest {
 
             new File("BillNo0.txt").delete();
         }
-        catch(IOException e)
+        catch(IOException ignore)
         {
 
         }
