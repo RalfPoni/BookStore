@@ -14,11 +14,6 @@ public abstract class User implements Serializable{
     private float salary;
 
     public User(String firstName, String lastName, String password, String email, String phoneNumber, float salary) {
-
-        if(!(verifyName(firstName) && verifyName(lastName)) || !(verifyEmail(email)) || !(verifyPhoneNumber(phoneNumber))) {
-            throw new IllegalArgumentException();
-        }
-
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setPassword(password);
@@ -32,6 +27,7 @@ public abstract class User implements Serializable{
     }
 
     public void setFirstName(String firstName) {
+        if(!verifyName(firstName)) throw new IllegalArgumentException();
         this.firstName = firstName;
     }
 
@@ -40,6 +36,7 @@ public abstract class User implements Serializable{
     }
 
     public void setLastName(String lastName) {
+        if(!verifyName(lastName)) throw new IllegalArgumentException();
         this.lastName = lastName;
     }
     public String getPhoneNumber() {
@@ -47,6 +44,7 @@ public abstract class User implements Serializable{
     }
 
     public void setPhoneNumber(String phoneNumber) {
+        if(!verifyPhoneNumber(phoneNumber)) throw new IllegalArgumentException();
         this.phoneNumber = phoneNumber;
     }
 
@@ -71,6 +69,7 @@ public abstract class User implements Serializable{
     }
 
     public void setEmail(String email) {
+        if(!verifyEmail(email)) throw new IllegalArgumentException();
         this.email = email;
     }
 

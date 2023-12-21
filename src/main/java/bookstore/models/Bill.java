@@ -19,6 +19,7 @@ public class Bill implements Serializable{
     //File billNumber = new File("billNumber.txt");
 
     public Bill(String ISBN, int quantity, double itemPrice, User user, LocalDate date) {
+
         setISBN(ISBN);
         setQuantity(quantity);
         setTotalPrice((double)quantity * itemPrice);
@@ -42,6 +43,9 @@ public class Bill implements Serializable{
     }
 
     public void setISBN(String iSBN) {
+        if(!(Book.verifyISBN(ISBN))){
+            throw new IllegalArgumentException();
+        }
         ISBN = iSBN;
     }
 

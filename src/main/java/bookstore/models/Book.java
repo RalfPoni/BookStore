@@ -17,9 +17,7 @@ public class Book implements Serializable{
     private double cost;
 
     public Book(String name, String author, String ISBN, String category, String supplier, double originalPrice, double sellingPrice, int stock, LocalDate datePurchased) {
-        if(!(verifyISBN(ISBN))){
-            throw new IllegalArgumentException();
-        }
+
 
         setName(name);
         setAuthor(author);
@@ -71,6 +69,11 @@ public class Book implements Serializable{
     }
 
     public void setISBN(String iSBN) {
+
+        if(!(verifyISBN(ISBN))){
+            throw new IllegalArgumentException();
+        }
+
         ISBN = iSBN;
     }
 
