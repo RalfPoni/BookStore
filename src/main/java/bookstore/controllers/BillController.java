@@ -12,8 +12,9 @@ public class BillController {
     private ArrayList<Bill> bills;
     private Scanner scan;
     private static int counter;
-
-
+    private String filename = "bills.dat";
+    private String counterFilename = "billNumber.dat";
+    public void setFileNames(String filename, String counterFilename) {this.filename = filename; this.counterFilename = counterFilename;}
     public BillController() {
         bills = new ArrayList<>();
         setCounter(getBillNo());
@@ -28,7 +29,7 @@ public class BillController {
 
             readBill();
 
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("bills.dat"));
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename));
 
             for(int i = 0; i < bills.size(); i++) {
                 output.writeObject(bills.get(i));
@@ -53,7 +54,7 @@ public class BillController {
     }
 
     public void readBill() {
-        try(ObjectInputStream input = new ObjectInputStream(new FileInputStream("bills.dat"))){
+        try(ObjectInputStream input = new ObjectInputStream(new FileInputStream(filename))){
 
             bills.clear();
 
@@ -70,6 +71,8 @@ public class BillController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+
     }
 
     public static int getCounter() {
@@ -83,7 +86,7 @@ public class BillController {
     public void writeBillNo(int counter) {
 
         try {
-            FileOutputStream output = new FileOutputStream("billNumber.dat");
+            FileOutputStream output = new FileOutputStream(counterFilename);
             try {
                 output.write(counter);
             } catch (IOException e) {
@@ -100,7 +103,7 @@ public class BillController {
 
     public int getBillNo() {
         try {
-            FileInputStream input = new FileInputStream("billNumber.dat");
+            FileInputStream input = new FileInputStream(counterFilename);
 
             return input.read();
         } catch(IOException e) {

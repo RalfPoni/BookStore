@@ -178,4 +178,22 @@ public class UserControllerTest {
         assertTrue(userController.verifyUser("bobOD@gmail.com", "password1"));
     }
 
+    @Test
+    public void testSetAndGetCurrentUser()
+    {
+        assertFalse(new File("currentuser.dat").isFile());
+
+        userController.setCurrentUser(testUser1);
+        User user = userController.getCurrentUser();
+
+        assertAll(
+                () -> assertEquals(testUser1.getUserInfo(), user.getUserInfo()),
+                () -> assertEquals(testUser1.getEmail(), user.getEmail()),
+                () -> assertEquals(testUser1.getPassword(), user.getPassword()),
+                () -> assertEquals(testUser1.getPhoneNumber(), user.getPhoneNumber()),
+                () -> assertEquals(testUser1.getSalary(), user.getSalary())
+        );
+    }
+
+
 }
