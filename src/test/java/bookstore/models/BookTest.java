@@ -40,10 +40,31 @@ public class BookTest {
     // String supplier, double originalPrice, double sellingPrice, int stock, LocalDate datePurchased
     @Test
     public void test_bookConstructor_allGood(){
-
+        Assertions.assertDoesNotThrow(() -> {
+            Book testBook = new Book("Loooooooooo", "W132JEJEWJ", "9999999999",
+                    "Whatever","KASOKKSOA", 1400, 20, 1000, LocalDate.now());
+        });
         Assertions.assertDoesNotThrow(() -> {
             Book testBook = new Book("Jamie", "Jonie", "1234567890", "Scifi"
                     , "AJA", 12, 20, 20, LocalDate.parse("2023-02-05"));
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            Book testBook = new Book("U", "K-Dot", "1-954-23345-X",
+                    "Conscious", "DefJam", 55, 30, 9999999, LocalDate.parse("1312-01-12"));
+
+        });
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "Fling, Sting, 1130123, Breath, Breathe, 12, 23, 123, 1992-12-08",
+            "F;p, Knack, 1234567890, Freeze, Flash, 11, 15, 222222, 1991-15-15"
+    })
+    public void test_bookConstructor_wrongInputs(String name, String author, String ISBN,
+                                                 String category, String supplier, double originalPrice,
+                                                 double sellingPrice, int stock, String date) {
+        Assertions.assertThrows(Exception.class, () ->{
+            Book newBook = new Book(name, author, ISBN, category, supplier, originalPrice, sellingPrice,
+                    stock, LocalDate.parse(date));
         });
     }
 }

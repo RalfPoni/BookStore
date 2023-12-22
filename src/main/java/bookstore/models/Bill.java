@@ -20,6 +20,8 @@ public class Bill implements Serializable{
 
     public Bill(String ISBN, int quantity, double itemPrice, User user, LocalDate date) {
 
+
+
         setISBN(ISBN);
         setQuantity(quantity);
         setTotalPrice(quantity, itemPrice);
@@ -35,6 +37,7 @@ public class Bill implements Serializable{
     }
 
     public void setQuantity(int quantity) {
+        if(quantity < 0) throw new IllegalArgumentException();
         this.quantity = quantity;
     }
 
@@ -54,6 +57,8 @@ public class Bill implements Serializable{
     }
 
     public void setTotalPrice(int quantity, double itemPrice) {
+        if(itemPrice < 0 || quantity < 0) throw new IllegalArgumentException();
+
         this.totalPrice = (double)quantity*itemPrice;
     }
 
