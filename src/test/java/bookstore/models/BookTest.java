@@ -81,6 +81,23 @@ public class BookTest {
         Assertions.assertEquals(160, book2.getCost());
     }
 
+    @Test
+    public void test_toString()
+    {
+        String expected = "Book Title: " + book1.getName() + " | Book Author: " + book1.getAuthor() + " | Book Category " + book1.getCategory() + " | Book ISBN " + book1.getISBN()
+                + " | Book Supplier: " + book1.getSupplier() + "\nBook Original Price: " + book1.getOriginalPrice() + " | Book Selling Price: " + book1.getSellingPrice()
+                + "\nBook Stock: " + book1.getStock();
+
+        Assertions.assertEquals(expected, book1.toString());
+
+        expected = "Book Title: " + book2.getName() + " | Book Author: " + book2.getAuthor() + " | Book Category " + book2.getCategory() + " | Book ISBN " + book2.getISBN()
+                + " | Book Supplier: " + book2.getSupplier() + "\nBook Original Price: " + book2.getOriginalPrice() + " | Book Selling Price: " + book2.getSellingPrice()
+                + "\nBook Stock: " + book2.getStock();
+
+        Assertions.assertEquals(expected, book2.toString());
+
+    }
+
     @ParameterizedTest
     @ValueSource(doubles = {0, 1, 100, Double.MAX_VALUE-1, Double.MAX_VALUE})
     public void test_originalPriceSetter_correctValues(double numbers){

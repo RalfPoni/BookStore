@@ -3,7 +3,7 @@ package bookstore.models;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
-
+import java.time.DateTimeException;
 public class Bill implements Serializable{
 
 
@@ -84,6 +84,16 @@ public class Bill implements Serializable{
     }
 
     public void setDate(LocalDate date) {
-        this.date = date;
+        try {
+            LocalDate.parse(date.toString()); // Attempt to parse the date to check validity
+            if (date.isAfter(LocalDate.now())) {
+                throw new DateTimeException("Date cannot be in the future");
+            } else {
+                this.date = date;
+            }
+        } catch (DateTimeException e) {
+            throw new DateTimeException("Invalid date format");
+        }
+
     }
 }
