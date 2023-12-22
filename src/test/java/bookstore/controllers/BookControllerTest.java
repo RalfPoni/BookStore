@@ -64,6 +64,19 @@ public class BookControllerTest {
         assertTrue(books.contains(testBook));
     }
 
+    @Test
+    public void testSetBooks()
+    {
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(testBook);
+        books.add(testBook2);
+
+        bookController.setBooks(books);
+
+        assertEquals(books, bookController.getBooks());
+
+    }
+
 
     @Test
     public void testWriteAndReadBook()
