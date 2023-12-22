@@ -99,13 +99,13 @@ public class BookTest {
     }
 
     @ParameterizedTest
-    @ValueSource(doubles = {0, 1, 100, Double.MAX_VALUE-1, Double.MAX_VALUE})
+    @ValueSource(doubles = {0, Double.MIN_VALUE, 100, Double.MAX_VALUE-1, Double.MAX_VALUE})
     public void test_originalPriceSetter_correctValues(double numbers){
         book1.setOriginalPrice(numbers);
         Assertions.assertEquals(numbers, book1.getOriginalPrice());
     }
     @ParameterizedTest
-    @ValueSource(doubles = {-0.1, -1, -100, (-1)*Double.MAX_VALUE+1, (-1)*Double.MAX_VALUE})
+    @ValueSource(doubles = {-Double.MIN_VALUE, -1, -100, (-1)*Double.MAX_VALUE+1, (-1)*Double.MAX_VALUE})
     public void test_originalPriceSetter_wrongValues(double numbers){
         Assertions.assertThrows(Exception.class, () -> book1.setOriginalPrice(numbers));
     }
@@ -174,10 +174,10 @@ public class BookTest {
     @ParameterizedTest
     @CsvSource({
             "0/596/52068/9",
+            "12345678901",
             "123456789",
             "0-97252298-0-Z",
-            "ISBN-11: 0-596-52068-9",
-            "0-97252298-0-x"
+            "ISBN-11: 0-596-52068-9"
     })
     public void test_verifyISBN_wrongISBN(String isbn){
         Assertions.assertFalse(Book.verifyISBN(isbn));

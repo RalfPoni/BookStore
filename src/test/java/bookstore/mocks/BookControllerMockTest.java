@@ -32,4 +32,9 @@ class BookControllerMockTest {
         System.out.println(bookControllerMock.getBooks());
         Assertions.assertTrue(bookControllerMock.getBooks().contains(bookControllerMock.getBook("1234567890")));
     }
+
+    @Test
+    public void test_getBook_doesNotExist(){
+        Assertions.assertFalse(bookControllerMock.getBooks().contains(bookControllerMock.getBook("1234567890")));
+    }
 }
