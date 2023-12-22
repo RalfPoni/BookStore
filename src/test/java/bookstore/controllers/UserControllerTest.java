@@ -4,12 +4,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 import bookstore.models.Librarian;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bookstore.controllers.UserController;
 import bookstore.models.User;
 
 import static org.junit.jupiter.api.Assertions.*;
