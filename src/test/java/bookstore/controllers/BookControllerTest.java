@@ -1,4 +1,4 @@
-package bookstore.view;
+package bookstore.controllers;
 
 import bookstore.models.Book;
 import bookstore.controllers.BookController;

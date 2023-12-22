@@ -1,4 +1,4 @@
-package bookstore.view;
+package bookstore.controllers;
 
 import java.io.*;
 import java.util.ArrayList;

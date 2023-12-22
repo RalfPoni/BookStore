@@ -1,4 +1,4 @@
-package bookstore.view;
+package bookstore.controllers;
 import static org.junit.jupiter.api.Assertions.*;
 
 import bookstore.controllers.BillController;
