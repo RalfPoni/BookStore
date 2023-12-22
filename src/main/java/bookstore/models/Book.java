@@ -29,7 +29,7 @@ public class Book implements Serializable{
         setStock(stock);
         setDatePurchased(datePurchased);
 
-        setCost(originalPrice * stock);
+        setCost(originalPrice, stock);
     }
 
     public String getAuthor() {
@@ -82,6 +82,7 @@ public class Book implements Serializable{
     }
 
     public void setSellingPrice(double sellingPrice) {
+        if(sellingPrice < 0) throw new IllegalArgumentException();
         this.sellingPrice = sellingPrice;
     }
 
@@ -90,6 +91,7 @@ public class Book implements Serializable{
     }
 
     public void setOriginalPrice(double originalPrice) {
+        if(originalPrice < 0) throw new IllegalArgumentException();
         this.originalPrice = originalPrice;
     }
 
@@ -98,6 +100,7 @@ public class Book implements Serializable{
     }
 
     public void setStock(int stock) {
+        if (stock < 0) throw new IllegalArgumentException();
         this.stock = stock;
     }
 
@@ -120,8 +123,9 @@ public class Book implements Serializable{
         return cost;
     }
 
-    public void setCost(double cost) {
-        this.cost = cost;
+    public void setCost(double originalPrice, int stock) {
+        if(originalPrice < 0 || stock < 0) throw new IllegalArgumentException();
+        this.cost = originalPrice * (double)stock;
     }
 
     public static boolean verifyISBN(String isbn){
