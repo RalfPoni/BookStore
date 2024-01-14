@@ -8,6 +8,7 @@ public class UserController {
 
     private ArrayList<User> users;
     private String filename = "users.dat";
+    private User currentUser;
 
     public UserController() {
         users = new ArrayList<>();
@@ -71,6 +72,7 @@ public class UserController {
         try(ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("currentuser.dat"))){
 
             output.writeObject(user);
+            currentUser = user;
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
