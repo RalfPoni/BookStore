@@ -28,9 +28,9 @@ public class BookControllerMock extends BookController {
     @Override
     public Book getBook(String ISBN){
         readBooks();
-        for(Book book : super.getBooks()) {
+        for(Book book : super.getBooks())
             if (ISBN.equals(book.getISBN())) return book;
-        }
+
         return null;
     }
 

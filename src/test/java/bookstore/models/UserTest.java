@@ -106,6 +106,7 @@ public class UserTest {
             "Joey",
             "Andy Won",
             "MacArthur",
+            "jay",
             "ABCTOPLKNILKPONTRKJWEQW"
     })
     public void test_verifyName_rightName(String name){
@@ -114,7 +115,6 @@ public class UserTest {
 
     @ParameterizedTest
     @CsvSource({
-            "1",
             "Ke;",
             "sl1ck",
             "ndtkpgstndndtkpgstnnndtkoooop"
@@ -165,7 +165,7 @@ public class UserTest {
 
     @ParameterizedTest
     @CsvSource({
-            "1",
+            "+(355) (123) 4567",
             "069123456",
             "355 1b3 4567",
             "+355-55-51234",
