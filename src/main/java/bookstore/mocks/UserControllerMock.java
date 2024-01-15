@@ -77,4 +77,9 @@ public class UserControllerMock extends UserController {
         return currentUser;
     }
 
+    @Override
+    public void listToFile(){
+
+    }
+
 }
