@@ -26,10 +26,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LibrarianSystemTest extends ApplicationTest {
 
+    Librarian librarian;
+    BookController bookController;
+    BillController billController;
+    UserController userController;
 
-
-    @BeforeAll
-    public static void setUp() {
+    @BeforeEach
+    public void setUp() {
         Librarian librarian = new Librarian("John", "Doe", "password1", "johndoe@yahoo.com", "+12514968166", 230920);
         BookController bookController = new BookController();
         BillController billController = new BillController();
@@ -40,6 +43,8 @@ public class LibrarianSystemTest extends ApplicationTest {
         userController.readUsers();
 
         boolean verify = userController.verifyUser("johndoe@yahoo.com", "password1");
+
+        System.out.println("Users: " + userController.getUsers());
     }
 
     @Override
