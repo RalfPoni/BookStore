@@ -50,19 +50,18 @@ public class UserController {
 
     public void readUsers() {
         try {
-            File file = new File(filename);
-            if (!file.createNewFile()) System.out.println("File already exists");
+            File file = new File("users.dat");
+            file.createNewFile();
 
             users.clear();
 
-            try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(file))) {
-                while (input.available() > 0) {
-                    addUser((User) input.readObject());
-                }
-            }
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
 
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            while (true)
+                addUser((User)input.readObject());
+
+        } catch(IOException | ClassNotFoundException e) {
+            System.out.println(e);
         }
     }
 

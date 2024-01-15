@@ -16,9 +16,13 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testfx.api.FxAssert;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 import bookstore.ViewTest;
+import org.testfx.matcher.base.WindowMatchers;
+import org.testfx.util.WaitForAsyncUtils;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -30,36 +34,39 @@ public class LibrarianSystemTest extends ApplicationTest {
     BookController bookController;
     BillController billController;
     UserController userController;
-
-    @BeforeEach
-    public void setUp() {
-        Librarian librarian = new Librarian("John", "Doe", "password1", "johndoe@yahoo.com", "+12514968166", 230920);
-        BookController bookController = new BookController();
-        BillController billController = new BillController();
-        UserController userController = new UserController();
-
-        userController.writeUser(librarian);
-
-        userController.readUsers();
-
-        boolean verify = userController.verifyUser("johndoe@yahoo.com", "password1");
-
-        System.out.println("Users: " + userController.getUsers());
-    }
-
     @Override
     public void start(Stage stage) throws Exception {
         new ViewTest().start(stage);
     }
 
-    @Test
-    public void testLoginSuccess() {
+    @BeforeEach
+    public void setUp() {
+        BookController bookController = new BookController();
+        BillController billController = new BillController();
+        UserController userController = new UserController();
 
-        clickOn("#emailTF").write("johndoe@yahoo.com");
+        userController.readUsers();
+
+        boolean verify = userController.verifyUser("power@gmail.com", "password1");
+
+        System.out.println(verify);
+        System.out.println("Users: " + userController.getUsers());
+    }
+
+
+    @Test
+    public void testLibrarianCreateBookBill() {
+
+        clickOn("#emailTF").write("power@gmail.com");
         clickOn("#passwordTF").write("password1");
         clickOn("#loginButton");
 
         assertFalse(lookup("#failedLabel").tryQuery().isPresent());
+
+        WaitForAsyncUtils.waitForFxEvents();
+
+        FxAssert.verifyThat(window("Book View"), WindowMatchers.isShowing());
+
     }
 
     @Test

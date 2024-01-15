@@ -1,6 +1,8 @@
 package bookstore;
 
 import bookstore.controllers.UserController;
+import bookstore.models.Administrator;
+import bookstore.models.Librarian;
 import bookstore.view.BookView;
 import bookstore.view.LoginView;
 import javafx.application.Application;
@@ -21,6 +23,8 @@ public class ViewTest extends Application{
         UserController users = new UserController();
 
         users.readUsers();
+
+        System.out.println("Users " + users.getUsers());
 
         LoginView loginView = new LoginView();
 
@@ -48,6 +52,7 @@ public class ViewTest extends Application{
                 System.out.println(users.getCurrentUser());
                 System.out.println("Success");
                 primaryStage.setScene(otherScene);
+                primaryStage.setTitle("Book View");
 
             }
             else loginView.loginFailed();

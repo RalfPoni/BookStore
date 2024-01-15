@@ -35,6 +35,7 @@ public class ManageEmployeesView extends View{
             Scene scene = new Scene(view.getView(), 200, 300);
 
             stage.setScene(scene);
+            stage.setTitle("Add Employee");
             stage.show();
 
         });

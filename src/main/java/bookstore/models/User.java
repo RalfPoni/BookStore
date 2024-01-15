@@ -44,6 +44,7 @@ public abstract class User implements Serializable{
     }
 
     public void setPhoneNumber(String phoneNumber) {
+        System.out.println(phoneNumber);
         if(!verifyPhoneNumber(phoneNumber)) throw new IllegalArgumentException();
         this.phoneNumber = phoneNumber;
     }

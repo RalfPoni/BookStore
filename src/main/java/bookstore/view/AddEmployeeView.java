@@ -74,7 +74,7 @@ public class AddEmployeeView extends View{
         addEmployeeButton.setOnAction(e->{
 
             addEmployeeButtonFunction(view, stage, accessLevelTF.getText(), nameTF.getText(), lastNameTF.getText(),
-                    passwordTF.getText(), emailTF.getText(), phoneNumberLabel.getText(), Float.parseFloat(salaryTF.getText()));
+                    passwordTF.getText(), emailTF.getText(), phoneNumberTF.getText(), Float.parseFloat(salaryTF.getText()));
 
             view.setUserPane();
             stage.close();
