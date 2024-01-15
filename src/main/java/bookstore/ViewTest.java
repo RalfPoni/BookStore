@@ -42,7 +42,7 @@ public class ViewTest extends Application{
             if(verify){
 
                 BookView bookView = new BookView();
-
+                bookView.setId("bookView");
                 Scene otherScene = new Scene(bookView);
 
                 System.out.println(users.getCurrentUser());
@@ -50,7 +50,7 @@ public class ViewTest extends Application{
                 primaryStage.setScene(otherScene);
 
             }
-            else System.out.println("Fail");
+            else loginView.loginFailed();
 
         });
     }

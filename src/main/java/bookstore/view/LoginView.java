@@ -1,6 +1,5 @@
 package bookstore.view;
 
-
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,9 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class LoginView extends View{
-
-
+public class LoginView extends View {
 
     private BorderPane borderPane = new BorderPane();
     private StackPane stackPane = new StackPane();
@@ -24,6 +21,8 @@ public class LoginView extends View{
 
     private Label emailLabel = new Label("Email");
     private Label passwordLabel = new Label("Password");
+
+    private Label failedLabel = new Label("Login credentials are incorrect");
 
     private Button loginButton = new Button("Log in");
 
@@ -43,7 +42,16 @@ public class LoginView extends View{
         return loginButton;
     }
 
+    public void loginFailed() {
+        failedLabel.setId("failedLabel");
+        gridPane.add(failedLabel, 0, 3);
+    }
+
     public void setView() {
+        emailTF.setId("emailTF");
+        passwordTF.setId("passwordTF");
+        loginButton.setId("loginButton");
+
         gridPane.add(emailTF, 1, 0);
         gridPane.add(passwordTF, 1, 1);
         gridPane.add(emailLabel, 0, 0);
@@ -53,14 +61,10 @@ public class LoginView extends View{
 
         borderPane.setTop(gridPane);
         borderPane.setBottom(stackPane);
-
-
     }
 
     @Override
     public Parent getView() {
         return borderPane;
     }
-
-
 }
