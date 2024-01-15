@@ -24,8 +24,13 @@ public class UserControllerMock extends UserController {
     }
 
     @Override
+<<<<<<< HEAD
     public boolean writeUser(User user) {
         return mockedUsers.add(user);
+=======
+    public void writeUser(User user) {
+        mockedUsers.add(user);
+>>>>>>> origin/master
     }
 
     @Override
@@ -68,6 +73,7 @@ public class UserControllerMock extends UserController {
     }
 
     @Override
+<<<<<<< HEAD
     public void setCurrentUser(User user){
         currentUser = user;
     }
@@ -78,6 +84,8 @@ public class UserControllerMock extends UserController {
     }
 
     @Override
+=======
+>>>>>>> origin/master
     public void listToFile()
     {
     }
