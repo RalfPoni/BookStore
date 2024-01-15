@@ -73,20 +73,8 @@ public class AddEmployeeView extends View{
 
         addEmployeeButton.setOnAction(e->{
 
-            switch(accessLevelTF.getText()) {
-                case "Administrator":
-                    users.writeUser(new Administrator(nameTF.getText(), lastNameTF.getText(), passwordTF.getText(), emailTF.getText(), phoneNumberTF.getText(), Float.parseFloat(salaryTF.getText())));
-                    break;
-                case "Manager":
-                    users.writeUser(new Manager(nameTF.getText(), lastNameTF.getText(), passwordTF.getText(), emailTF.getText(), phoneNumberTF.getText(), Float.parseFloat(salaryTF.getText())));
-                    break;
-                case "Librarian":
-                    users.writeUser(new Librarian(nameTF.getText(), lastNameTF.getText(), passwordTF.getText(), emailTF.getText(), phoneNumberTF.getText(), Float.parseFloat(salaryTF.getText())));
-                    break;
-                default:
-                    System.out.println("Invalid");
-                    break;
-            }
+            addEmployeeButtonFunction(view, stage, accessLevelTF.getText(), nameTF.getText(), lastNameTF.getText(),
+                    passwordTF.getText(), emailTF.getText(), phoneNumberLabel.getText(), Float.parseFloat(salaryTF.getText()));
 
             view.setUserPane();
             stage.close();
@@ -102,6 +90,26 @@ public class AddEmployeeView extends View{
     public Parent getView() {
         // TODO Auto-generated method stub
         return fullPane;
+    }
+    //users.writeUser(new Librarian(nameTF.getText(), lastNameTF.getText(),
+    // passwordTF.getText(), emailTF.getText(), phoneNumberTF.getText(), Float.parseFloat(salaryTF.getText())));
+    public boolean addEmployeeButtonFunction(ManageEmployeesView view, Stage stage, String accessLevel, String name, String lastName,
+                                             String password, String email, String phoneNumber, Float salary) {
+
+        return switch (accessLevel) {
+            case "Administrator" ->
+                    users.writeUser(new Administrator(name, lastName, password, email, phoneNumber, salary));
+            case "Manager" ->
+                    users.writeUser(new Manager(name, lastName, password, email, phoneNumber, salary));
+            case "Librarian" ->
+                    users.writeUser(new Librarian(name, lastName, password, email, phoneNumber, salary));
+            default -> {
+                System.out.println("Invalid");
+                yield false;
+            }
+        };
+
+    }
     }
 
 }

@@ -8,7 +8,7 @@ public class UserController {
 
     private ArrayList<User> users;
     private String filename = "users.dat";
-    private User currentUser;
+    protected User currentUser;
 
     public UserController() {
         users = new ArrayList<>();
@@ -29,7 +29,7 @@ public class UserController {
     public void setFilename(String filename) { this.filename = filename; }
 
 
-    public void writeUser(User user) {
+    public boolean writeUser(User user) {
 
         try {
 
@@ -46,8 +46,11 @@ public class UserController {
 
             output.close();
 
+            return true;
+
         } catch(IOException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
