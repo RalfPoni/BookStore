@@ -62,6 +62,10 @@ public class BookView extends BorderPane{
     @SuppressWarnings("unchecked")
     public void setView() {
 
+        addBookButton.setId("addBookButton");
+        addToCartButton.setId("addToCartButton");
+        manageEmployeesButton.setId("manageEmployeesButton");
+
 
         tableView.setEditable(true);
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

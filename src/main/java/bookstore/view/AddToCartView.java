@@ -40,6 +40,9 @@ public class AddToCartView extends View{
     }
 
     public void setView(Stage stage) {
+        ISBNTF.setId("ISBNTF");
+        quantityTF.setId("quantityTF");
+        addToCartButton.setId("checkout");
         gridPane.add(ISBNTF, 1, 0);
         gridPane.add(quantityTF, 1, 1);
         gridPane.add(ISBNLabel, 0, 0);

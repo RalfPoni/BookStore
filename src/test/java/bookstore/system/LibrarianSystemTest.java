@@ -67,6 +67,12 @@ public class LibrarianSystemTest extends ApplicationTest {
 
         FxAssert.verifyThat(window("Book View"), WindowMatchers.isShowing());
 
+        clickOn("#addToCartButton");
+
+        clickOn("#ISBNTF").write("2291372790");
+        clickOn("#quantityTF").write("13");
+        clickOn("#checkout");
+
     }
 
     @Test
