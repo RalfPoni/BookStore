@@ -1,6 +1,7 @@
 package bookstore.controllers;
 
 import bookstore.models.Book;
+import bookstore.models.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -99,6 +100,19 @@ public class BookController {
         }
 
         return null;
+    }
+
+    public void listToFile() {
+        try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename))) {
+
+            for (Book book : books) {
+                output.writeObject(book);
+            }
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void clear() {
