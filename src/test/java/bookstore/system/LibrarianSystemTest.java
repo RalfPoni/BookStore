@@ -30,10 +30,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LibrarianSystemTest extends ApplicationTest {
 
-    Librarian librarian;
-    BookController bookController;
-    BillController billController;
-    UserController userController;
     @Override
     public void start(Stage stage) throws Exception {
         new ViewTest().start(stage);
@@ -44,13 +40,6 @@ public class LibrarianSystemTest extends ApplicationTest {
         BookController bookController = new BookController();
         BillController billController = new BillController();
         UserController userController = new UserController();
-
-        userController.readUsers();
-
-        boolean verify = userController.verifyUser("power@gmail.com", "password1");
-
-        System.out.println(verify);
-        System.out.println("Users: " + userController.getUsers());
     }
 
 

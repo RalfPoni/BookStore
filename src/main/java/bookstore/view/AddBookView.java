@@ -46,7 +46,19 @@ public class AddBookView extends View{
         setView();
     }
 
+    public void setBookController(BookController newBooks){ books = newBooks;}
+
     public void setView() {
+
+        nameTF.setId("nameTF");
+        authorTF.setId("authorTF");
+        categoryTF.setId("categoryTF");
+        supplierTF.setId("supplierTF");
+        originalPriceTF.setId("originalPriceTF");
+        sellingPriceTF.setId("sellingPriceTF");
+        stockTF.setId("stockTF");
+        datePicker.setId("datePicker");
+        addButton.setId("addButton");
 
         infoPane.add(nameTF, 1, 0);
         infoPane.add(authorTF, 1, 1);
@@ -78,12 +90,49 @@ public class AddBookView extends View{
 
     public Book addBook() throws InvalidBookException{
 
+        if (nameTF.getText() == null) {
+            System.out.println("Variable name: nameTF");
+        }
+
+        if (authorTF.getText() == null) {
+            System.out.println("Variable name: authorTF");
+        }
+
+        if (categoryTF.getText() == null) {
+            System.out.println("Variable name: categoryTF");
+        }
+
+        if (supplierTF.getText() == null) {
+            System.out.println("Variable name: supplierTF");
+        }
+
+        if (originalPriceTF.getText() == null) {
+            System.out.println("Variable name: originalPriceTF");
+        }
+
+        if (sellingPriceTF.getText() == null) {
+            System.out.println("Variable name: sellingPriceTF");
+        }
+
+        if (stockTF.getText() == null) {
+            System.out.println("Variable name: stockTF");
+        }
+
+        if (datePicker.getValue() == null) {
+            System.out.println("Variable name: datePicker");
+        }
+
+
         if(nameTF.getText() == null || authorTF.getText() == null || categoryTF.getText() == null || supplierTF.getText() == null
-                || originalPriceTF.getText() == null || sellingPriceTF.getText() == null || stockTF.getText() == null || datePicker.getValue() == null) throw new InvalidBookException("");
+                || originalPriceTF.getText() == null || sellingPriceTF.getText() == null || stockTF.getText() == null || datePicker.getValue() == null){throw new InvalidBookException("");}
 
         Book newBook = new Book(nameTF.getText(), authorTF.getText(), books.generateISBN(), categoryTF.getText(), supplierTF.getText(),
                 Double.parseDouble(originalPriceTF.getText()), Double.parseDouble(sellingPriceTF.getText()), Integer.parseInt(stockTF.getText()), datePicker.getValue());
 
+        System.out.println(books);
+
+        System.out.println("EMPTY SPACESSSS");
+        System.out.println(newBook);
         books.writeBook(newBook);
 
 

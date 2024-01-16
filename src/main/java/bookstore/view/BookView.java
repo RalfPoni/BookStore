@@ -128,7 +128,7 @@ public class BookView extends BorderPane{
         getAddBookButton().setOnAction(e-> {
 
             Stage otherStage = new Stage();
-
+            otherStage.setTitle("AddBook");
             AddBookView thisView = new AddBookView();
 
             otherStage.setScene(new Scene(thisView.getView()));
