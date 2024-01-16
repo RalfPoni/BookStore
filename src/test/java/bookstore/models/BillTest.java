@@ -78,7 +78,7 @@ class BillTest {
             "2001, 12, 32",
             "2022, 2, 30",
             "2023, 2, 29",
-            "2024, 1, 1"
+            "2024, 1, 0"
     })
     public void testSetDate_InvalidDates(int year, int month, int day)
     {

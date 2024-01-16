@@ -35,8 +35,10 @@ public class UserControllerTest {
     @AfterEach
     public void tearDown()
     {
+        System.out.println(file.exists());
         if (file != null && file.exists())
         {
+            System.out.println("Working");
             try
             {
                 FileWriter fileWriter = new FileWriter(filename);
@@ -96,6 +98,8 @@ public class UserControllerTest {
 
         ArrayList<User> readUsers = userController.getUsers();
 
+        System.out.println(readUsers.get(0).getUserInfo());
+
         assertAll(
                 () -> assertEquals(initialUsers.get(0).getUserInfo(), readUsers.get(0).getUserInfo()),
                 () -> assertEquals(initialUsers.get(1).getUserInfo(), readUsers.get(1).getUserInfo())
@@ -109,7 +113,10 @@ public class UserControllerTest {
         userController.writeUser(testUser2);
         userController.writeUser(testUser1);
 
+        System.out.println(userController.getUsers());
+
         User user1 = userController.getUser("John", "Doe");
+        System.out.println(user1);
 
         assertAll(
                 () -> assertEquals(testUser1.getUserInfo(), user1.getUserInfo()),

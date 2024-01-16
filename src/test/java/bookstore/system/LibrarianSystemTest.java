@@ -73,8 +73,55 @@ public class LibrarianSystemTest extends ApplicationTest {
         clickOn("#quantityTF").write("13");
         clickOn("#checkout");
 
+        WaitForAsyncUtils.waitForFxEvents();
+
     }
 
+    @Test
+    public void testLibrarianCreateBookBill_failISBN() {
+
+        clickOn("#emailTF").write("power@gmail.com");
+        clickOn("#passwordTF").write("password1");
+        clickOn("#loginButton");
+
+        assertFalse(lookup("#failedLabel").tryQuery().isPresent());
+
+        WaitForAsyncUtils.waitForFxEvents();
+
+        FxAssert.verifyThat(window("Book View"), WindowMatchers.isShowing());
+
+        clickOn("#addToCartButton");
+
+        clickOn("#ISBNTF").write("229372790");
+        clickOn("#quantityTF").write("13");
+        clickOn("#checkout");
+
+        WaitForAsyncUtils.waitForFxEvents();
+        FxAssert.verifyThat(window("Cart"), WindowMatchers.isShowing());
+    }
+
+    @Test
+    public void testLibrarianCreateBookBill_failStock() {
+
+        clickOn("#emailTF").write("power@gmail.com");
+        clickOn("#passwordTF").write("password1");
+        clickOn("#loginButton");
+
+        assertFalse(lookup("#failedLabel").tryQuery().isPresent());
+
+        WaitForAsyncUtils.waitForFxEvents();
+
+        FxAssert.verifyThat(window("Book View"), WindowMatchers.isShowing());
+
+        clickOn("#addToCartButton");
+
+        clickOn("#ISBNTF").write("2291372790");
+        clickOn("#quantityTF").write("19");
+        clickOn("#checkout");
+
+        WaitForAsyncUtils.waitForFxEvents();
+        FxAssert.verifyThat(window("Cart"), WindowMatchers.isShowing());
+    }
     @Test
     public void testLoginFailure() {
 
@@ -84,4 +131,6 @@ public class LibrarianSystemTest extends ApplicationTest {
 
         assertTrue(lookup("#failedLabel").tryQuery().isPresent());
     }
+
+
 }

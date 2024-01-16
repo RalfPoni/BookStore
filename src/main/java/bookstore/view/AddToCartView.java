@@ -55,10 +55,10 @@ public class AddToCartView extends View{
 
         addToCartButton.setOnAction(e->{
 
-            if(Integer.parseInt(quantityTF.getText()) > books.getBook(ISBNTF.getText()).getStock()) {
+            if( books.getBook(ISBNTF.getText()) == null || Integer.parseInt(quantityTF.getText()) > books.getBook(ISBNTF.getText()).getStock()) {
                 System.out.println("Fail");
             }else {
-
+                System.out.println(books.getBook(ISBNTF.getText()));
                 bills.writeBill(new Bill(ISBNTF.getText(), Integer.parseInt(quantityTF.getText()),
                         books.getBook(ISBNTF.getText()).getSellingPrice(), users.getCurrentUser(), LocalDate.now()));
                 stage.close();

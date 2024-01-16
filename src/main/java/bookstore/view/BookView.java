@@ -165,6 +165,7 @@ public class BookView extends BorderPane{
 
         addToCartButton.setOnAction(e->{
             Stage otherStage = new Stage();
+            otherStage.setTitle("Cart");
 
             AddToCartView view = new AddToCartView(otherStage);
 

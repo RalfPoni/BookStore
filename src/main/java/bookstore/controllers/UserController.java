@@ -50,7 +50,7 @@ public class UserController {
 
     public void readUsers() {
         try {
-            File file = new File("users.dat");
+            File file = new File(filename);
             file.createNewFile();
 
             users.clear();
