@@ -34,6 +34,10 @@ public class RemoveEmployeeView extends View{
         gridPane.add(firstNameTF, 1, 0);
         gridPane.add(lastNameTF, 1, 1);
 
+        firstNameTF.setId("firstNameTF");
+        lastNameTF.setId("lastNameTF");
+        removeButton.setId("removeButton");
+
         gridPane.add(firstNameLabel, 0, 0);
         gridPane.add(lastNameLabel, 0, 1);
 

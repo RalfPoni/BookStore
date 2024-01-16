@@ -36,9 +36,13 @@ public class EditEmployeeView extends View{
     }
 
     public void setView(ManageEmployeesView view, Stage stage) {
+
         gridPane.add(firstNameTF, 1, 0);
         gridPane.add(lastNameTF, 1, 1);
 
+        firstNameTF.setId("firstNameTF");
+        lastNameTF.setId("lastNameTF");
+        editEmployee.setId("editEmployee");
         gridPane.add(firstNameLabel, 0, 0);
         gridPane.add(lastNameLabel, 0, 1);
 
@@ -66,13 +70,24 @@ public class EditEmployeeView extends View{
         GridPane gridEditPane = new GridPane();
         StackPane stackEditPane = new StackPane();
 
-        TextField nameTF = new TextField(users.getUsers().get(listIndex).getFirstName());
-        TextField lastNameEditTF = new TextField(users.getUsers().get(listIndex).getLastName());
-        TextField passwordTF = new TextField(users.getUsers().get(listIndex).getPassword());
-        TextField emailTF = new TextField(users.getUsers().get(listIndex).getEmail());
-        TextField phoneNumberTF = new TextField(users.getUsers().get(listIndex).getPhoneNumber());
-        TextField salaryTF = new TextField(users.getUsers().get(listIndex).getSalary().toString());
-        TextField accessLevelTF = new TextField(users.getUsers().get(listIndex).getAccessLevel());
+
+        TextField nameTF = new TextField();
+        TextField lastNameEditTF = new TextField();
+        TextField passwordTF = new TextField();
+        TextField emailTF = new TextField();
+        TextField phoneNumberTF = new TextField();
+        TextField salaryTF = new TextField();
+        TextField accessLevelTF = new TextField();
+
+
+        nameTF.setId("nameTF");
+        lastNameEditTF.setId("lastNameEditTF");
+        passwordTF.setId("passwordTF");
+        emailTF.setId("emailTF");
+        phoneNumberTF.setId("phoneNumberTF");
+        salaryTF.setId("salaryTF");
+        accessLevelTF.setId("accessLevelTF");
+        finalEditButton.setId("editButton");
 
         Label nameEditLabel = new Label("Name:");
         Label lastNameEditLabel = new Label("Last Name:");

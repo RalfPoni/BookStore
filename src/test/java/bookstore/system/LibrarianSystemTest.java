@@ -3,16 +3,14 @@ package bookstore.system;
 import bookstore.controllers.BookController;
 import bookstore.controllers.BillController;
 import bookstore.controllers.UserController;
-import bookstore.models.Book;
-import bookstore.models.Bill;
-import bookstore.models.Librarian;
-import bookstore.models.User;
+import bookstore.models.*;
 import bookstore.view.LoginView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +21,8 @@ import bookstore.ViewTest;
 import org.testfx.matcher.base.WindowMatchers;
 import org.testfx.util.WaitForAsyncUtils;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -30,6 +30,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LibrarianSystemTest extends ApplicationTest {
 
+
+    private static File file;
+    private UserController userController;
     @Override
     public void start(Stage stage) throws Exception {
         new ViewTest().start(stage);
@@ -37,11 +40,35 @@ public class LibrarianSystemTest extends ApplicationTest {
 
     @BeforeEach
     public void setUp() {
+        file = new File("books.dat");
         BookController bookController = new BookController();
         BillController billController = new BillController();
-        UserController userController = new UserController();
+        userController = new UserController();
+
+        bookController.writeBook(new Book("Animal Farm", "George Orwell", "2291372790", "Thriller", "BetaSupplier", 4.00, 14.99, 13, LocalDate.now()));
     }
 
+    @AfterEach
+    public void tearDown()
+    {
+        if (file != null && file.exists())
+        {
+            try
+            {
+                FileWriter fileWriter = new FileWriter("books.dat");
+                fileWriter.write("");
+                userController.writeUser(new Administrator("Bob", "Odenkirk", "password1","admin@yahoo.com", "+15667553908", 200420));
+                userController.writeUser(new Librarian("Power", "Yea", "password1","power@gmail.com", "+15667553908", 200420));
+                fileWriter.close();
+
+                file.delete();
+            }
+            catch(IOException ignored)
+            {
+
+            }
+        }
+    }
 
     @Test
     public void testLibrarianCreateBookBill() {

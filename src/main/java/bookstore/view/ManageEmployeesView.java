@@ -25,24 +25,28 @@ public class ManageEmployeesView extends View{
     private final Button getEmployeeButton = new Button("Get Employee Info");
 
     public ManageEmployeesView() {
+
+        addEmployeeButton.setId("addEmployeeButton");
+        editEmployeeButton.setId("editEmployeeButton");
+        removeEmployeeButton.setId("removeEmployeeButton");
+        getEmployeeButton.setId("getEmployeeButton");
         setView();
 
         addEmployeeButton.setOnAction(e->{
             Stage stage = new Stage();
-
+            stage.setTitle("addEmployee");
             AddEmployeeView view = new AddEmployeeView(this, stage);
 
             Scene scene = new Scene(view.getView(), 200, 300);
 
             stage.setScene(scene);
-            stage.setTitle("Add Employee");
             stage.show();
 
         });
 
         removeEmployeeButton.setOnAction(e->{
             Stage stage = new Stage();
-
+            stage.setTitle("removeEmployee");
             RemoveEmployeeView view = new RemoveEmployeeView(this, stage);
 
             Scene scene = new Scene(view.getView());
@@ -53,7 +57,7 @@ public class ManageEmployeesView extends View{
 
         editEmployeeButton.setOnAction(e->{
             Stage stage = new Stage();
-
+            stage.setTitle("editEmployee");
             EditEmployeeView view = new EditEmployeeView(this, stage);
 
             Scene scene = new Scene(view.getView());
@@ -64,7 +68,7 @@ public class ManageEmployeesView extends View{
 
         getEmployeeButton.setOnAction(e->{
             Stage stage = new Stage();
-
+            stage.setTitle("getEmployee");
             GetEmployeeView view = new GetEmployeeView(stage);
 
             Scene scene = new Scene(view.getView());

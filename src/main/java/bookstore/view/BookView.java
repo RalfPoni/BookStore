@@ -154,6 +154,7 @@ public class BookView extends BorderPane{
         getManageEmployeesButton().setOnAction(e->{
             Stage otherStage = new Stage();
 
+            otherStage.setTitle("ManageEmployees");
             ManageEmployeesView view = new ManageEmployeesView();
 
             otherStage.setScene(new Scene(view.getView()));

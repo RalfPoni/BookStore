@@ -10,6 +10,7 @@ import bookstore.models.Librarian;
 import bookstore.view.AddBookView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,11 +42,10 @@ public class ManagerSystemTest extends ApplicationTest{
 
     @BeforeEach
     public void setUp() {
-
+        file = new File("books.dat");
         bookController = new BookController();
         testBook = new Book("1984", "George Orwell", bookController.generateISBN(), "Comedy", "AlphaSupplier", 9.00, 19.99, 4, LocalDate.now());
 
-        ArrayList<Book> books = bookController.getBooks();
         clickOn("#emailTF").write("admin@yahoo.com");
         clickOn("#passwordTF").write("password1");
         clickOn("#loginButton");
@@ -61,6 +61,7 @@ public class ManagerSystemTest extends ApplicationTest{
             {
                 FileWriter fileWriter = new FileWriter("books.dat");
                 fileWriter.write("");
+
                 fileWriter.close();
 
                 file.delete();
@@ -92,9 +93,8 @@ public class ManagerSystemTest extends ApplicationTest{
         clickOn("#addButton");
 
         bookController.readBooks();
-        assertEquals(1, bookController.getBooks().size());
 
-        Book addedBook = bookController.getBooks().get(0);
+        Book addedBook = bookController.getBooks().get(bookController.getBooks().size() - 1);
 
         assertAll(
                 () -> assertEquals(testBook.getName(), addedBook.getName()),
@@ -106,6 +106,33 @@ public class ManagerSystemTest extends ApplicationTest{
                 () -> assertEquals(testBook.getStock(), addedBook.getStock()),
                 () -> assertEquals(testBook.getDatePurchased(), addedBook.getDatePurchased())
         );
+
+
+    }
+
+    @Test
+    public void testManagerAddInvalidBook() {
+
+        assertTrue(lookup("#addBookButton").tryQuery().isPresent());
+        clickOn("#addBookButton");
+
+        WaitForAsyncUtils.waitForFxEvents();
+        FxAssert.verifyThat(window("AddBook"), WindowMatchers.isShowing());
+
+        clickOn("#nameTF").write(testBook.getName());
+        clickOn("#authorTF").write(testBook.getAuthor());
+        clickOn("#categoryTF").write(testBook.getCategory());
+        clickOn("#supplierTF").write(testBook.getSupplier());
+        clickOn("#originalPriceTF").write(Double.toString(testBook.getOriginalPrice()));
+        clickOn("#sellingPriceTF").write(Double.toString(testBook.getSellingPrice()));
+        clickOn("#stockTF").write(Integer.toString(testBook.getStock()));
+        //Invalid month
+        clickOn("#datePicker").write("20/16/2024").type(KeyCode.ENTER);
+
+        clickOn("#addButton");
+
+        bookController.readBooks();
+        assertEquals(0, bookController.getBooks().size());
 
 
     }

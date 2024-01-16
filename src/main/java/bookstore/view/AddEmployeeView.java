@@ -50,6 +50,15 @@ public class AddEmployeeView extends View{
     }
 
     public void setView(ManageEmployeesView view, Stage stage) {
+        nameTF.setId("nameTF");
+        lastNameTF.setId("lastNameTF");
+        passwordTF.setId("passwordTF");
+        emailTF.setId("emailTF");
+        phoneNumberTF.setId("phoneNumberTF");
+        salaryTF.setId("salaryTF");
+        accessLevelTF.setId("accessLevelTF");
+        addEmployeeButton.setId("addEmployeeButton2");
+
         gridPane.add(nameTF, 1, 0);
         gridPane.add(lastNameTF, 1, 1);
         gridPane.add(passwordTF, 1, 2);
@@ -95,7 +104,6 @@ public class AddEmployeeView extends View{
     // passwordTF.getText(), emailTF.getText(), phoneNumberTF.getText(), Float.parseFloat(salaryTF.getText())));
     public boolean addEmployeeButtonFunction(ManageEmployeesView view, Stage stage, String accessLevel, String name, String lastName,
                                              String password, String email, String phoneNumber, Float salary) {
-
         return switch (accessLevel) {
             case "Administrator" ->
                     users.writeUser(new Administrator(name, lastName, password, email, phoneNumber, salary));

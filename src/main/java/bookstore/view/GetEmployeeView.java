@@ -45,30 +45,43 @@ public class GetEmployeeView extends View{
 
         bills.readBill();
 
+        firstNameTF.setId("firstNameTF");
+        lastNameTF.setId("lastNameTF");
+        getUserButton.setId("getUserButton");
         gridPane.add(firstNameTF, 1, 0);
         gridPane.add(lastNameTF, 1, 1);
         gridPane.add(firstNameLabel, 0, 0);
         gridPane.add(lastNameLabel, 0, 1);
-
         stackPane.getChildren().add(getUserButton);
 
         fullPane.setTop(gridPane);
         fullPane.setBottom(stackPane);
 
         getUserButton.setOnAction(e->{
-            userPane.getChildren().add(new Text(users.getUser(firstNameTF.getText(), lastNameTF.getText()).toString()));
 
-            bills.readBill();
+            try
+            {
 
-            System.out.println(bills.getBills().get(0).getUser());
+                userPane.getChildren().add(new Text(users.getUser(firstNameTF.getText(), lastNameTF.getText()).toString()));
 
-            //statText.setText(getTotalSold(users.getUser(firstNameTF.getText(), lastNameTF.getText()).toString());
+                bills.readBill();
 
-            statText.setText(String.valueOf(getTotalSold(users.getUser(firstNameTF.getText(), lastNameTF.getText()))));
+                System.out.println(bills.getBills().get(0).getUser());
 
-            userPane.getChildren().add(statText);
+                //statText.setText(getTotalSold(users.getUser(firstNameTF.getText(), lastNameTF.getText()).toString());
 
-            stage.setScene(new Scene(userPane));
+                statText.setText(String.valueOf(getTotalSold(users.getUser(firstNameTF.getText(), lastNameTF.getText()))));
+
+                statText.setId("userInformationText");
+                userPane.getChildren().add(statText);
+
+                stage.setScene(new Scene(userPane));
+
+            }
+            catch(NullPointerException c)
+            {
+
+            }
 
 
         });
