@@ -9,8 +9,6 @@ public class Manager extends User{
 
     public Manager(String firstName, String lastName, String password, String email, String phoneNumber, float salary) {
         super(firstName, lastName, password, email, phoneNumber, salary);
-
-        super.setFilePath("managers.dat");
         super.setAccessLevel("Manager");
     }
 

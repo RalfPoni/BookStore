@@ -83,12 +83,10 @@ public class BillController {
                 output.write(counter);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
             }
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -109,8 +107,6 @@ public class BillController {
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
-            System.out.println("Error?");
         }
 
         try {
@@ -126,7 +122,6 @@ public class BillController {
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
         }
     }
 }

@@ -15,6 +15,7 @@ public class BillControllerTest {
 
     private BillController billController;
     private Bill testBill;
+    private Bill testBill2;
     private final String filename = "testBills.dat";
     private static final String counterFilename = "testBillNumbers.dat";
     private Librarian user = new Librarian("John", "Doe", "password1", "johndoe@yahoo.com", "+12514968166",230920);
@@ -29,6 +30,7 @@ public class BillControllerTest {
         file2 = new File(counterFilename);
         file1 = new File(filename);
         testBill = new Bill("1234567890", 2, 14.99, user, LocalDate.now());
+        testBill2 = new Bill("1234567891", 2, 17.99, user, LocalDate.now());
     }
 
     @AfterEach
@@ -63,7 +65,7 @@ public class BillControllerTest {
     @Test
     public void testCreateBill()
     {
-        billController.setCounter(21);
+        BillController.setCounter(21);
 
         billController.createBill(testBill);
 
@@ -93,6 +95,7 @@ public class BillControllerTest {
     {
 
         billController.writeBill(testBill);
+        billController.writeBill(testBill2);
         billController.readBill();
 
         ArrayList<Bill> bills = billController.getBills();

@@ -11,8 +11,6 @@ public class Administrator extends User{
 
     public Administrator(String firstName, String lastName, String password, String email, String phoneNumber, float salary) {
         super(firstName, lastName, password, email, phoneNumber, salary);
-
-        super.setFilePath("admins.dat");
         super.setAccessLevel("Administrator");
     }
 

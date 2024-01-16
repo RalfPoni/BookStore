@@ -149,6 +149,7 @@ class BillTest {
     @CsvSource({
             "-1, 1",
             "1, -1",
+            "-1,-1"
     })
     public void test_billSetCostAndBillConstructor_negativeValues(int quantity, double itemPrice) {
 

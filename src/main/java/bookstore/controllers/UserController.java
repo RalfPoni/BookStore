@@ -41,7 +41,6 @@ public class UserController {
             addUser(user);
 
         } catch (IOException e) {
-            e.printStackTrace();
             return false;
         }
 
@@ -51,7 +50,7 @@ public class UserController {
     public void readUsers() {
         try {
             File file = new File(filename);
-            file.createNewFile();
+            if(!file.createNewFile()) System.out.println("Failed");;
 
             users.clear();
 
@@ -60,8 +59,7 @@ public class UserController {
             while (true)
                 addUser((User)input.readObject());
 
-        } catch(IOException | ClassNotFoundException e) {
-            System.out.println(e);
+        } catch(IOException | ClassNotFoundException ignored) {
         }
     }
 
@@ -73,7 +71,6 @@ public class UserController {
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
         }
     }
 
@@ -84,7 +81,6 @@ public class UserController {
 
         } catch (IOException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
         }
 
         return null;
@@ -99,7 +95,6 @@ public class UserController {
 
                 users.remove(i);
 
-                System.out.println("Removed");
 
                 break;
             }
@@ -164,8 +159,7 @@ public class UserController {
             }
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            // TODO Auto-generated catch
         }
     }
 }

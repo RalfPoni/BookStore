@@ -9,8 +9,6 @@ public class Librarian extends User{
 
     public Librarian(String firstName, String lastName, String password, String email, String phoneNumber, float salary) {
         super(firstName, lastName, password, email, phoneNumber, salary);
-
-        super.setFilePath("librarians.dat");
         super.setAccessLevel("Librarian");
     }
 
